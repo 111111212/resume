@@ -421,7 +421,7 @@
     </div>
 
     <div class="contact">
-      <a href="tel:17662025265"><span class="k">电话</span>17662025265</a>
+      <a href="#" class="phone" data-n="MTc2NjIwMjUyNjU=" title="点击拨打完整号码"><span class="k">电话</span>176****5265</a>
       <a href="mailto:895040369@qq.com"><span class="k">邮箱</span>895040369@qq.com</a>
       <a href="https://github.com/111111212" target="_blank" rel="noopener"><span class="k">GitHub</span>github.com/111111212</a>
       <span><span class="k">院校</span>山东外事职业大学 · 大数据工程技术</span>
@@ -585,5 +585,13 @@
   </footer>
 
 </main>
+
+<script>
+  // 电话脱敏：完整号码不以明文出现在源码中，点击时才还原并唤起拨号
+  document.querySelector('.phone').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.location.href = 'tel:' + atob(this.dataset.n);
+  });
+</script>
 </body>
 </html>
