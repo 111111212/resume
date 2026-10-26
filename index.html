@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王成强 · Java 后端开发（AI 应用 / Agent 方向）</title>
+<meta name="description" content="王成强 - Java 后端开发（AI 应用 / Agent 方向）简历。Spring Cloud、Redis、LangGraph 多智能体、MCP、Agentic RAG。">
+<style>
+  :root {
+    --ink: #16202e;
+    --ink-soft: #465164;
+    --ink-mute: #7c8798;
+    --line: #e4e9f0;
+    --line-soft: #eef2f7;
+    --accent: #1d5fa8;
+    --accent-soft: #eaf1fa;
+    --bg: #eef1f6;
+    --card: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    padding: 32px 16px 56px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(22, 32, 46, .04),
+                0 12px 32px -12px rgba(22, 32, 46, .14);
+    padding: 46px 52px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 顶部一条细的强调色装饰 */
+  .sheet::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #4d94d8 55%, #a8cdec);
+  }
+
+  /* ---------- 头部 ---------- */
+  header { padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+
+  .name-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 34px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: .06em;
+  }
+
+  .name-en {
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-left: 12px;
+  }
+
+  .target {
+    margin-top: 9px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .target .sep { color: #c3cddb; margin: 0 8px; font-weight: 400; }
+  .target .plain { color: var(--ink-soft); font-weight: 500; }
+
+  .actions { display: flex; gap: 8px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color .15s, color .15s, background .15s;
+    font-family: inherit;
+  }
+
+  .btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .btn svg { width: 14px; height: 14px; }
+
+  .contact {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    font-size: 13px;
+  }
+
+  .contact a, .contact span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: #f6f8fb;
+    border: 1px solid var(--line-soft);
+    color: var(--ink-soft);
+    text-decoration: none;
+    line-height: 1.6;
+    transition: border-color .15s, color .15s;
+  }
+
+  .contact a:hover { border-color: #c9dbf0; color: var(--accent); }
+  .contact .k { color: var(--ink-mute); font-size: 12px; }
+
+  /* ---------- 区块 ---------- */
+  section { margin-top: 34px; }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 16px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--ink);
+  }
+
+  h2::before {
+    content: "";
+    width: 3px;
+    height: 15px;
+    border-radius: 2px;
+    background: var(--accent);
+    flex: none;
+  }
+
+  h2 .count {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .04em;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- 技能 ---------- */
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .skill-box {
+    border: 1px solid var(--line-soft);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: #fcfdfe;
+  }
+
+  .skill-box h3 {
+    margin: 0 0 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: .04em;
+  }
+
+  .skill-box ul { margin: 0; padding: 0; list-style: none; }
+
+  .skill-box li {
+    position: relative;
+    padding-left: 13px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .skill-box li + li { margin-top: 3px; }
+
+  .skill-box li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .72em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #b6c6da;
+  }
+
+  .skill-box b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- 经历条目 ---------- */
+  .entry { padding: 0 0 4px; }
+
+  .entry + .entry { margin-top: 26px; padding-top: 26px; border-top: 1px dashed var(--line); }
+
+  .entry-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .entry-title {
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: .01em;
+  }
+
+  .entry-title .role {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--accent);
+    margin-left: 10px;
+  }
+
+  .date {
+    font-size: 12.5px;
+    color: var(--ink-mute);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    padding: 2px 9px;
+    border-radius: 6px;
+    background: #f6f8fb;
+  }
+
+  .org {
+    margin-top: 3px;
+    font-size: 13px;
+    color: var(--ink-mute);
+  }
+
+  .lede {
+    margin: 10px 0 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  .stack {
+    margin: 11px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stack span {
+    font-size: 11.5px;
+    line-height: 1.5;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: var(--accent-soft);
+    color: #2a5f96;
+    border: 1px solid #dbe7f5;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+
+  ul.bullets {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul.bullets li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 13.5px;
+    line-height: 1.78;
+    color: var(--ink-soft);
+  }
+
+  ul.bullets li + li { margin-top: 7px; }
+
+  ul.bullets li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: .74em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #a9bdd6;
+  }
+
+  ul.bullets b { color: var(--ink); font-weight: 600; }
+
+  .srclink {
+    margin-top: 12px;
+    font-size: 12.5px;
+  }
+
+  .srclink a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid #cfe0f2;
+    padding-bottom: 1px;
+  }
+
+  .srclink a:hover { border-bottom-color: var(--accent); }
+
+  /* ---------- 教育 ---------- */
+  .edu {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    border: 1px solid var(--line-soft);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: #fcfdfe;
+  }
+
+  .edu .school { font-size: 14.5px; font-weight: 700; }
+  .edu .major { color: var(--ink-soft); font-size: 13.5px; margin-left: 10px; }
+  .edu .deg { font-size: 12.5px; color: var(--ink-mute); }
+
+  /* ---------- 页脚 ---------- */
+  footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 11.5px;
+    color: var(--ink-mute);
+  }
+
+  footer a { color: var(--ink-mute); text-decoration: none; border-bottom: 1px dotted #c6d0dd; }
+  footer a:hover { color: var(--accent); }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width: 720px) {
+    body { padding: 14px 10px 40px; font-size: 14px; }
+    .sheet { padding: 30px 20px 28px; border-radius: 10px; }
+    h1 { font-size: 27px; }
+    .name-en { display: none; }
+    .skills { grid-template-columns: 1fr; }
+    .actions { width: 100%; }
+    .btn { flex: 1; justify-content: center; }
+    .entry-head { gap: 6px; }
+    .entry-title .role { display: block; margin: 3px 0 0; }
+    .contact { font-size: 12.5px; }
+  }
+
+  /* ---------- 打印 ---------- */
+  @media print {
+    @page { size: A4; margin: 12mm 13mm; }
+    body { padding: 0; background: #fff; font-size: 10.2pt; line-height: 1.6; }
+    .sheet { max-width: none; padding: 0; box-shadow: none; border-radius: 0; }
+    .sheet::before { display: none; }
+    .actions { display: none; }
+    section { margin-top: 16px; }
+    .entry + .entry { margin-top: 14px; padding-top: 14px; }
+    h1 { font-size: 22pt; }
+    ul.bullets li, .skill-box li { font-size: 9.6pt; }
+    .skill-box, .edu { background: #fff; }
+    .entry, .skill-box, .edu { break-inside: avoid; }
+    a { color: inherit !important; border: none !important; }
+    footer { margin-top: 16px; }
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <header>
+    <div class="name-row">
+      <div>
+        <h1>王成强<span class="name-en">Wang Chengqiang</span></h1>
+        <div class="target">
+          Java 后端开发
+          <span class="sep">/</span>
+          AI 应用 · Agent 方向
+          <span class="sep">|</span>
+          <span class="plain">男 · 22 岁 · 本科</span>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          PDF 简历
+        </a>
+        <button class="btn" onclick="window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          打印
+        </button>
+      </div>
+    </div>
+
+    <div class="contact">
+      <a href="tel:17662025265"><span class="k">电话</span>17662025265</a>
+      <a href="mailto:895040369@qq.com"><span class="k">邮箱</span>895040369@qq.com</a>
+      <a href="https://github.com/111111212" target="_blank" rel="noopener"><span class="k">GitHub</span>github.com/111111212</a>
+      <span><span class="k">院校</span>山东外事职业大学 · 大数据工程技术</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>专业技能</h2>
+    <div class="skills">
+
+      <div class="skill-box">
+        <h3>语言与框架</h3>
+        <ul>
+          <li><b>Java</b>：集合、多线程、IO、反射、并发、设计模式，遵循阿里 Java 开发规范</li>
+          <li><b>Spring / SpringMVC / MyBatis-Plus / SpringBoot</b> 主流框架开发</li>
+          <li><b>Spring Cloud Alibaba</b>：Nacos、OpenFeign、Gateway；Sentinel 限流、熔断降级</li>
+          <li><b>Python</b>：FastAPI 异步接口、SSE 流式推送、数据清洗、大模型 API 调用</li>
+        </ul>
+      </div>
+
+      <div class="skill-box">
+        <h3>数据与中间件</h3>
+        <ul>
+          <li><b>MySQL</b>：事务隔离级别、索引、存储引擎、SQL 优化</li>
+          <li><b>Redis</b>：常用数据类型、持久化机制、缓存穿透 / 击穿 / 雪崩、分布式锁、Lua 原子脚本</li>
+          <li><b>RabbitMQ</b> 消息队列、<b>Nginx</b> 反向代理</li>
+          <li>Linux 常用命令、<b>Docker</b> 容器化部署、Maven、Git</li>
+        </ul>
+      </div>
+
+      <div class="skill-box">
+        <h3>AI Agent 工程</h3>
+        <ul>
+          <li><b>LangGraph</b> 状态图编排与 Supervisor 多智能体：动态路由、回流重决策、Checkpointer 断点续跑</li>
+          <li>Function Calling 与 JSON Schema 结构化输出、<b>MCP 协议</b>（Server / Client、工具网关）</li>
+          <li><b>Agentic RAG</b>：BM25 + 同义词扩展 + RRF 融合 + Rerank，向量通道可插拔</li>
+          <li>Human-in-the-loop 挂起与恢复、SQL 安全护栏与分级授权、Prompt 注入检测</li>
+          <li>上下文工程与 Token 成本控制、自建 Agent 评测脚本</li>
+        </ul>
+      </div>
+
+      <div class="skill-box">
+        <h3>工程素养</h3>
+        <ul>
+          <li>Swagger 接口文档编写、单元测试、接口联调与线上问题排查</li>
+          <li>缓存一致性、幂等与并发安全、分页与索引优化等实践经验</li>
+          <li>了解 <b>HTML / CSS / Vue</b> 前端开发</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>实习经历</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">山东京东云鲁南云计算有限公司<span class="role">Java 后端开发实习生</span></div>
+        <div class="date">2026.02 — 至今</div>
+      </div>
+      <ul class="bullets">
+        <li>参与政务平台后端开发，独立编写业务接口，完成日常功能迭代。</li>
+        <li>优化 SQL 语句，解决数据查询卡顿问题，提升访问效率。</li>
+        <li>使用 Redis 缓存减轻数据库压力，通过 Lua 脚本实现原子操作，处理高并发数据竞争问题。</li>
+        <li>负责接口联调与 bug 修复，整理开发文档，配合团队完成项目上线。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>项目经历<span class="count">3 个项目</span></h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">DataMind · 多智能体数据分析 Agent<span class="role">个人项目 / 独立开发</span></div>
+        <div class="date">2025.10 — 2026.01</div>
+      </div>
+      <p class="lede">
+        Supervisor 调度专家 Agent，把「问数据」变成对话，面向业务同学的自助分析入口。用户用自然语言提问，由 Supervisor 规划任务并调度 SQL 分析、指标口径检索、图表洞察三类专家 Agent 协同完成，输出数据结论、明细表与图表；支持多轮追问与高危操作人工审批。已交付可运行版本（Python 2200+ 行，含演示页面、3 个 MCP Server、12 项单元测试）。
+      </p>
+      <div class="stack">
+        <span>Python</span><span>FastAPI</span><span>LangGraph</span><span>MCP</span>
+        <span>SQLAlchemy</span><span>MySQL</span><span>BM25</span><span>PGVector</span>
+        <span>SSE</span><span>DeepSeek / Qwen API</span>
+      </div>
+      <ul class="bullets">
+        <li>基于 <b>LangGraph</b> 搭建 Supervisor 中心调度的状态图：三类专家 Agent 执行完统一回流 Supervisor 重新决策，由此支持按需路由、SQL 报错后带错误信息重写重试、检索不足时补充检索；用 Checkpointer 按 thread_id 保存节点状态，人工审批挂起后可原地恢复，不必重跑前面的步骤。</li>
+        <li>实现 <b>Agentic RAG</b>：不写死「先检索再回答」的固定流水线，由 Agent 判断本轮是否需要查口径、结果是否够用；检索侧用 BM25 词法召回 + 同义词扩展（GMV／销售额、退款率／退货率等），向量通道（PGVector）按环境变量可插拔、未配置时自动退化为单通道，两路经 RRF 融合后按「标题命中 + 关键词覆盖」规则重排，使「销售额怎么算」这类问法稳定命中对应口径切片。</li>
+        <li>做<b>上下文工程</b>：按问题裁剪 Schema、只注入相关表字段，对工具返回做截断与结构化压缩，历史会话只保留 3 轮滚动摘要，在保证准确率的前提下压低单轮 token 与首字延迟。</li>
+        <li>按 MCP 协议将 SQL 执行器、指标字典、图表生成分别封装为 3 个独立 MCP Server，Agent 侧以 MCP Client 统一注册调用；SQL 落地前统一过 <b>7 层校验</b>（只读强制、多语句堆叠拦截、只读语句内藏写操作检测、表白名单、自动补 LIMIT、全表扫描转人工确认等），写操作与高危查询经 interrupt 触发 Human-in-the-loop，审批通过后从断点继续执行；输入侧做 Prompt 注入特征检测，并对工具参数逐字段扫描。</li>
+        <li>自建 <b>Text2SQL 评测脚本</b>：以「执行结果与基准 SQL 结果逐列比对」为判定标准，统计生成成功率与结果准确率，用于迭代提示词与路由策略；同时保留无 API Key 时自动降级到规则引擎的能力，离线也能完整跑通链路与页面。</li>
+      </ul>
+      <div class="srclink">源码：<a href="https://github.com/111111212/datamind-multi-agent" target="_blank" rel="noopener">github.com/111111212/datamind-multi-agent</a></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">在线教育学习管理系统</div>
+        <div class="date">2025.06 — 2025.09</div>
+      </div>
+      <p class="lede">
+        面向学员与机构的线上教学平台，提供课程管理、在线学习、学习时长统计、选课报名、周课表、权限管控等核心功能，采用微服务架构开发，支持高并发场景下稳定运行。
+      </p>
+      <div class="stack">
+        <span>SpringBoot</span><span>SpringCloud</span><span>SpringAI</span><span>MyBatis-Plus</span>
+        <span>MySQL</span><span>Redis</span><span>Lua</span><span>RabbitMQ</span>
+        <span>Nacos</span><span>OpenFeign</span><span>Seata</span><span>Gateway</span>
+        <span>Nginx</span><span>Swagger</span><span>Docker</span>
+      </div>
+      <ul class="bullets">
+        <li>开发课程模块业务接口，完成课程上架、查询、学习记录更新等功能，优化 SQL 查询逻辑，提升数据加载响应速度。</li>
+        <li>使用 Redis 缓存热门课程数据，搭配 Lua 脚本实现高并发下的选课计数，保证数据一致性，避免超卖与重复提交问题。</li>
+        <li>基于 RabbitMQ 异步处理用户学习时长统计任务，削峰填谷，缓解服务器瞬时访问压力。</li>
+        <li>基于 Nacos、OpenFeign 实现微服务注册与远程调用，整合 Seata 分布式事务，解决跨模块业务数据不一致问题。</li>
+        <li>基于 SpringAI 接入大模型，将课程查询、报名校验封装为工具函数由模型自主调用，课程资料向量化后做 RAG 检索，使回答带出处、减少幻觉。</li>
+        <li>实现周课表模块：排课按「同周几 + 时间区间左闭右开重叠 + 学期区间有交集」判定冲突，冲突返回 409 由用户二次确认；一键同步已选课程时自动避让已占时段，周视图按「用户 + 版本号」整周缓存，写操作只递增版本号即可 O(1) 失效。</li>
+        <li>参与接口测试与线上问题排查，修复业务漏洞，编写接口文档，配合团队完成项目版本迭代与上线。</li>
+      </ul>
+      <div class="srclink">源码：<a href="https://github.com/111111212/redesigned-chainsaw" target="_blank" rel="noopener">github.com/111111212/redesigned-chainsaw</a></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">校园生活服务平台</div>
+        <div class="date">2024.09 — 2025.01</div>
+      </div>
+      <p class="lede">
+        面向高校学生的一站式生活服务平台，包含校园二手交易、拼单组队、校园资讯、用户中心等模块，采用单体架构开发。
+      </p>
+      <div class="stack">
+        <span>SpringBoot</span><span>MyBatis-Plus</span><span>MySQL</span>
+        <span>Redis</span><span>Nginx</span><span>Maven</span><span>Git</span>
+      </div>
+      <ul class="bullets">
+        <li>开发用户模块核心功能，实现注册登录、个人信息维护、权限校验等逻辑，保证用户身份安全。</li>
+        <li>基于 Redis 实现分布式 Session 共享，解决多实例部署下的登录状态同步问题；滑动续期只在剩余有效期不足一半时写入，避免每个请求都打一次 Redis。</li>
+        <li>使用 Redis + Lua 脚本实现二手商品发布计数，小时 / 天双窗口原子判断，控制用户发布频率，防止恶意刷数据。</li>
+        <li>设计缓存策略，对高频访问的资讯数据做缓存处理，用「空值哨兵 + 单飞重建 + TTL 抖动」解决缓存穿透、击穿与雪崩，降低数据库压力。</li>
+        <li>开发二手交易商品列表、详情查询接口，列表用游标分页替代 OFFSET，避免深翻页时耗时随页数线性增长。</li>
+        <li>实现拼单成团：用单条带条件的 UPDATE 抢占名额、配合唯一索引兜底重复入团，不引入分布式锁也不会超员。</li>
+        <li>编写单元测试与接口文档，配合完成系统联调、Bug 修复与版本上线。</li>
+      </ul>
+      <div class="srclink">源码：<a href="https://github.com/111111212/campus-life-hub" target="_blank" rel="noopener">github.com/111111212/campus-life-hub</a></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>教育背景</h2>
+    <div class="edu">
+      <div>
+        <span class="school">山东外事职业大学</span>
+        <span class="major">大数据工程技术</span>
+      </div>
+      <div class="deg">本科</div>
+    </div>
+  </section>
+
+  <footer>
+    <div>最近更新：2026-10-25</div>
+    <div>在线版：<a href="./">resume</a>　·　<a href="resume.pdf" target="_blank" rel="noopener">下载 PDF</a></div>
+  </footer>
+
+</main>
+</body>
+</html>
